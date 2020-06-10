@@ -1,3 +1,5 @@
 'use strict';
 
-console.log('start');
+import './slider';
+
+
