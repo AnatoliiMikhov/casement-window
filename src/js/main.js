@@ -3,22 +3,35 @@ import modals from "./modules/modals";
 import tabs from "./modules/tabs";
 import forms from "./modules/forms";
 
-window.addEventListener("DOMContentLoaded", () => {
+window.addEventListener( "DOMContentLoaded", () => {
     "use strict";
 
     modals();
 
-    tabs(".glazing_slider",
+    tabs( ".glazing_slider",
         ".glazing_block",
         ".glazing_content",
         "active",
-        "fadeInDown");
+        "fadeInDown",
+        0.8
+    );
 
-    tabs(".decoration_slider",
+    tabs( ".decoration_slider",
         ".no_click",
         ".decoration_content > div > div",
         "after_click",
-        "fadeInRight");
+        "fadeInRight",
+        0.8
+    );
+
+    tabs( ".balcon_icons",
+        ".balcon_icons_img",
+        ".big_img > img",
+        "do_image_more",
+        "fadeIn",
+        0.8,
+        "inline-block"
+    );
 
     forms();
-});
+} );
