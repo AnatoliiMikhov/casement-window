@@ -1,15 +1,13 @@
 "use strict";
 
-const forms = () => {
-    const form = document.querySelectorAll("form"),
-        inputs = document.querySelectorAll("input"),
-        phoneInputs = document.querySelectorAll('input[name="user_phone"]');
+import checkNumInputs from "./checkNumInputs";
+import { closeModal } from './modals';
 
-    phoneInputs.forEach((item) => {
-        item.addEventListener("input", () => {
-            item.value = item.value.replace(/\D/, "");
-        });
-    });
+const forms = ( state ) => {
+    const form = document.querySelectorAll( "form" ),
+        inputs = document.querySelectorAll( "input" );
+
+    checkNumInputs( 'input[name="user_phone"]' );
 
     const message = {
         loading: "Loading...",
@@ -17,47 +15,56 @@ const forms = () => {
         failure: "Что-то пошло не так",
     };
 
-    const postData = async (url, data) => {
-        document.querySelector(".status").textContent = message.loading;
+    const postData = async ( url, data ) => {
+        document.querySelector( ".status" ).textContent = message.loading;
 
-        let res = await fetch(url, {
+        let res = await fetch( url, {
             method: "POST",
             body: data,
-        });
+        } );
 
         return await res.text();
     };
 
     const clearInputs = () => {
-        inputs.forEach((item) => {
+        inputs.forEach( ( item ) => {
             item.value = "";
-        });
+        } );
     };
 
-    form.forEach((item) => {
-        item.addEventListener("submit", (e) => {
+    form.forEach( ( item ) => {
+        item.addEventListener( "submit", ( e ) => {
             e.preventDefault();
 
-            let statusMessage = document.createElement("div");
-            statusMessage.classList.add("status");
-            item.appendChild(statusMessage);
+            let statusMessage = document.createElement( "div" );
+            statusMessage.classList.add( "status" );
+            item.appendChild( statusMessage );
 
-            const formData = new FormData(item);
+            const formData = new FormData( item );
+            if ( item.getAttribute( "data-calc" ) === "end" ) {
+                for ( let key in state ) {
+                    formData.append( key, state[ key ] );
+                }
+            }
 
-            postData("assets/server.php", formData)
-                .then((res) => {
-                    console.log(res);
+            postData( "assets/server.php", formData )
+                .then( ( res ) => {
+                    console.log( res );
                     statusMessage.textContent = message.success;
-                })
-                .catch(() => (statusMessage.textContent = message.failure))
-                .finally(() => {
+                } )
+                .catch( () => ( statusMessage.textContent = message.failure ) )
+                .finally( () => {
                     clearInputs();
-                    setTimeout(() => {
+                    setTimeout( () => {
                         statusMessage.remove();
-                    }, 3000);
-                });
-        });
-    });
+                        const modal = document.querySelectorAll( '[data-modal]' );
+                        modal.forEach( item => {
+                            closeModal( item );
+                        } );
+                    }, 3000 );
+                } );
+        } );
+    } );
 };
 
 export default forms;

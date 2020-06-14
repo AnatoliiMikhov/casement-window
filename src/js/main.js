@@ -2,9 +2,20 @@ import "./slider";
 import modals from "./modules/modals";
 import tabs from "./modules/tabs";
 import forms from "./modules/forms";
+import changeModalState from './modules/changeModalState';
 
 window.addEventListener( "DOMContentLoaded", () => {
     "use strict";
+
+    const modalState = {
+        form: 0,
+        type: "tree",
+        width: "",
+        height: "",
+        profile: "Тёплое"
+    };
+
+    changeModalState( modalState );
 
     modals();
 
@@ -33,5 +44,5 @@ window.addEventListener( "DOMContentLoaded", () => {
         "inline-block"
     );
 
-    forms();
+    forms( modalState );
 } );
