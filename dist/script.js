@@ -18124,8 +18124,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_modals__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/modals */ "./src/js/modules/modals.js");
 /* harmony import */ var _modules_tabs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/tabs */ "./src/js/modules/tabs.js");
 /* harmony import */ var _modules_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/forms */ "./src/js/modules/forms.js");
-/* harmony import */ var _modules_changeModalState__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/changeModalState */ "./src/js/modules/changeModalState.js");
-/* harmony import */ var _modules_timer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/timer */ "./src/js/modules/timer.js");
+/* harmony import */ var _modules_setModalStateDefault__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/setModalStateDefault */ "./src/js/modules/setModalStateDefault.js");
+/* harmony import */ var _modules_changeModalState__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/changeModalState */ "./src/js/modules/changeModalState.js");
+/* harmony import */ var _modules_timer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/timer */ "./src/js/modules/timer.js");
+
 
 
 
@@ -18135,21 +18137,14 @@ __webpack_require__.r(__webpack_exports__);
 window.addEventListener("DOMContentLoaded", function () {
   "use strict";
 
-  var modalState = {
-    form: 0,
-    type: "tree",
-    width: "",
-    height: "",
-    profile: "Тёплое"
-  };
   var deadline = "2020-12-31T24:00:00";
-  Object(_modules_changeModalState__WEBPACK_IMPORTED_MODULE_4__["default"])(modalState);
+  Object(_modules_changeModalState__WEBPACK_IMPORTED_MODULE_5__["default"])(_modules_setModalStateDefault__WEBPACK_IMPORTED_MODULE_4__["modalState"]);
   Object(_modules_modals__WEBPACK_IMPORTED_MODULE_1__["default"])();
   Object(_modules_tabs__WEBPACK_IMPORTED_MODULE_2__["default"])(".glazing_slider", ".glazing_block", ".glazing_content", "active", "fadeInDown", 0.8);
   Object(_modules_tabs__WEBPACK_IMPORTED_MODULE_2__["default"])(".decoration_slider", ".no_click", ".decoration_content > div > div", "after_click", "fadeInRight", 0.8);
   Object(_modules_tabs__WEBPACK_IMPORTED_MODULE_2__["default"])(".balcon_icons", ".balcon_icons_img", ".big_img > img", "do_image_more", "fadeIn", 0.8, "inline-block");
-  Object(_modules_forms__WEBPACK_IMPORTED_MODULE_3__["default"])(modalState);
-  Object(_modules_timer__WEBPACK_IMPORTED_MODULE_5__["default"])(".timer1 .container1", deadline);
+  Object(_modules_forms__WEBPACK_IMPORTED_MODULE_3__["default"])(_modules_setModalStateDefault__WEBPACK_IMPORTED_MODULE_4__["modalState"]);
+  Object(_modules_timer__WEBPACK_IMPORTED_MODULE_6__["default"])(".timer1 .container1", deadline);
 });
 
 /***/ }),
@@ -18488,6 +18483,28 @@ var modals = function modals() {
 
 /* harmony default export */ __webpack_exports__["default"] = (modals);
 
+
+/***/ }),
+
+/***/ "./src/js/modules/setModalStateDefault.js":
+/*!************************************************!*\
+  !*** ./src/js/modules/setModalStateDefault.js ***!
+  \************************************************/
+/*! exports provided: modalState */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modalState", function() { return modalState; });
+
+
+var modalState = {
+  form: 0,
+  type: "tree",
+  width: "",
+  height: "",
+  profile: "Тёплое"
+};
 
 /***/ }),
 
