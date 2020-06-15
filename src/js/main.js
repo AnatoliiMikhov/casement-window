@@ -3,6 +3,7 @@ import modals from "./modules/modals";
 import tabs from "./modules/tabs";
 import forms from "./modules/forms";
 import changeModalState from './modules/changeModalState';
+import timer from './modules/timer';
 
 window.addEventListener( "DOMContentLoaded", () => {
     "use strict";
@@ -14,6 +15,8 @@ window.addEventListener( "DOMContentLoaded", () => {
         height: "",
         profile: "Тёплое"
     };
+
+    const deadline = "2020-12-31T24:00:00";
 
     changeModalState( modalState );
 
@@ -45,4 +48,6 @@ window.addEventListener( "DOMContentLoaded", () => {
     );
 
     forms( modalState );
+
+    timer(".timer1 .container1", deadline);
 } );
